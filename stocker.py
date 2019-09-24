@@ -429,17 +429,12 @@ class Stocker():
         # Make and predict for next year with future dataframe
         future = model.make_future_dataframe(periods = days, freq='D')
         future = model.predict(future)
-        future1 = model.make_future_dataframe(periods = days+150, freq='D')
-        future1 = model.predict(future1)
-####        
+  
         if days > 0:
             # Print the predicted price
             print('Predicted Price on {} = ${:.2f}'.format(
                 future.ix[len(future) - 1, 'ds'], future.ix[len(future) - 1, 'yhat']))
-####
-            
-            print('Predicted Price on {} = ${:.2f}'.format(
-                future1.ix[len(future1) - 1, 'ds'], future1.ix[len(future1) - 1, 'yhat']))
+
 
             title = '%s Historical and Predicted Stock Price'  % self.symbol
         else:
@@ -457,8 +452,7 @@ class Stocker():
         # Plot the uncertainty interval as ribbon
         ax.fill_between(future['ds'].dt.to_pydatetime(), future['yhat_upper'], future['yhat_lower'], alpha = 0.3, 
                        facecolor = 'g', edgecolor = 'k', linewidth = 1.4, label = 'Confidence Interval')
-        ax.fill_between(future1['ds'].dt.to_pydatetime(), future1['yhat_upper'], future1['yhat_lower'], alpha = 0.3, 
-                       facecolor = 'r', edgecolor = 'k', linewidth = 1.4, label = 'Confidence Interval')
+
 
         # Plot formatting
         plt.legend(loc = 2, prop={'size': 10}); plt.xlabel('Date'); plt.ylabel('Price $');
