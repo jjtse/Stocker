@@ -441,7 +441,7 @@ class Stocker():
             print('Predicted Price on {} = ${:.2f}'.format(
                 future1.ix[len(future1) - 1, 'ds'], future1.ix[len(future1) - 1, 'yhat']))
 
-            title = '%s Historical and Predicted Stock Price'  % self.symbo
+            title = '%s Historical and Predicted Stock Price'  % self.symbol
         else:
             title = '%s Historical and Modeled Stock Price' % self.symbol
         
