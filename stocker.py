@@ -411,7 +411,7 @@ class Stocker():
         plt.show()
             
     # Basic prophet model for specified number of days  
-    def create_prophet_model(self, days=0, resample=False):
+    def create_prophet_model(self, days=30, resample=False):
         
         self.reset_plot()
         
@@ -430,7 +430,7 @@ class Stocker():
         future = model.make_future_dataframe(periods = days, freq='D')
         future = model.predict(future)
         
-        if days > 0:
+        if days > 30:
             # Print the predicted price
             print('Predicted Price on {} = ${:.2f}'.format(
                 future.ix[len(future) - 1, 'ds'], future.ix[len(future) - 1, 'yhat']))
