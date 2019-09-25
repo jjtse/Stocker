@@ -547,17 +547,17 @@ class Stocker():
 
             # Plot the actual values
             ax.plot(train['ds'], train['y'], 'ko-', linewidth = 1.4, alpha = 0.8, ms = 1.8, label = 'real price')
-            ax.plot(test['ds'], test['y'], 'bo-', linewidth = 1.4, alpha = 0.8, ms = 1.8, label = 'real price during predicted')
+            ax.plot(test['ds'], test['y'], 'ro-', linewidth = 1.4, alpha = 0.8, ms = 1.8, label = 'real price during predicted')
             
             # Plot the predicted values
             ax.plot(future['ds'], future['yhat'], 'forestgreen', linewidth = 2.4, label = 'Predicted');
 
             # Plot the uncertainty interval as ribbon
-            ax.fill_between(future['ds'].dt.to_pydatetime(), future['yhat_upper'], future['yhat_lower'], alpha = 0.6, 
+            ax.fill_between(future['ds'].dt.to_pydatetime(), future['yhat_upper'], future['yhat_lower'], alpha = 0.3, 
                            facecolor = 'g', edgecolor = 'k', linewidth = 1.4, label = 'Confidence Interval')
 
             # Put a vertical line at the start of predictions
-            plt.vlines(x=min(test['ds']), ymin=min(future['yhat_lower']), ymax=max(future['yhat_upper']), colors = 'r',
+            plt.vlines(x=min(test['ds']), ymin=min(future['yhat_lower']), ymax=max(future['yhat_upper']), colors = 'navy',
                        linestyles='dashed', label = 'Prediction Start')
 
             # Plot formatting
