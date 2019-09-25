@@ -548,10 +548,10 @@ class Stocker():
             fig, ax = plt.subplots(1, 1)
 
             # Plot the actual values
+            ax.plot(train['ds'], test['y'], 'bo-', linewidth = 1.4, alpha = 0.8, ms = 1.8, label = 'Real price')
             ax.plot(test['ds'], test['y'], 'ko-', linewidth = 1.4, alpha = 0.8, ms = 1.8, label = 'Real price')
-            
             # Plot the predicted values
-            ax.plot(future['ds'], future['yhat'], 'navy', linewidth = 2.4, label = 'Predicted');
+            ax.plot(future['ds'], future['yhat'], 'red', linewidth = 2.4, label = 'Predicted');
 
             # Plot the uncertainty interval as ribbon
             ax.fill_between(future['ds'].dt.to_pydatetime(), future['yhat_upper'], future['yhat_lower'], alpha = 0.6, 
