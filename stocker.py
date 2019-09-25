@@ -429,12 +429,11 @@ class Stocker():
         # Make and predict for next year with future dataframe
         future = model.make_future_dataframe(periods = days, freq='D')
         future = model.predict(future)
-  
+        
         if days > 0:
             # Print the predicted price
             print('Predicted Price on {} = ${:.2f}'.format(
                 future.ix[len(future) - 1, 'ds'], future.ix[len(future) - 1, 'yhat']))
-
 
             title = '%s Historical and Predicted Stock Price'  % self.symbol
         else:
@@ -452,7 +451,6 @@ class Stocker():
         # Plot the uncertainty interval as ribbon
         ax.fill_between(future['ds'].dt.to_pydatetime(), future['yhat_upper'], future['yhat_lower'], alpha = 0.3, 
                        facecolor = 'g', edgecolor = 'k', linewidth = 1.4, label = 'Confidence Interval')
-
 
         # Plot formatting
         plt.legend(loc = 2, prop={'size': 10}); plt.xlabel('Date'); plt.ylabel('Price $');
@@ -548,10 +546,11 @@ class Stocker():
             fig, ax = plt.subplots(1, 1)
 
             # Plot the actual values
-            ax.plot(train['ds'], test['y'], 'bo-', linewidth = 1.4, alpha = 0.8, ms = 1.8, label = 'Real price')
-            ax.plot(test['ds'], test['y'], 'ko-', linewidth = 1.4, alpha = 0.8, ms = 1.8, label = 'Real price')
+            ax.plot(train['ds'], train['y'], 'ro-', linewidth = 1.4, alpha = 0.8, ms = 1.8, label = 'real price')
+            ax.plot(test['ds'], test['y'], 'bo-', linewidth = 1.4, alpha = 0.8, ms = 1.8, label = '預測時期的real price')
+            
             # Plot the predicted values
-            ax.plot(future['ds'], future['yhat'], 'red', linewidth = 2.4, label = 'Predicted');
+            ax.plot(future['ds'], future['yhat'], 'yellow', linewidth = 2.4, label = 'Predicted');
 
             # Plot the uncertainty interval as ribbon
             ax.fill_between(future['ds'].dt.to_pydatetime(), future['yhat_upper'], future['yhat_lower'], alpha = 0.6, 
